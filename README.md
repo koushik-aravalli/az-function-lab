@@ -18,7 +18,8 @@ This repo contains labs to demonstrate azure Function for AZ-203
   - [Install VSCode](https://code.visualstudio.com/download#)
     - Extension Azure functions
     - Azure Account
-
+  - [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator)
+  - [Azure Storage Explorer](https://go.microsoft.com/fwlink/?LinkId=708343&clcid=0x409)
 
 ## References
   - [Azure functions Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference)
