@@ -8,15 +8,27 @@ namespace az203.labs.Function
     public static class Lab01_Timertrigger
     {
         [FunctionName("Lab01_Timertrigger")]
-        public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log)
+        [return: ServiceBus("samplequeue", Connection = "AzureServiceBusConnectionString")]
+        public static Location Run([TimerTrigger("0 */1 * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+
+            Random random = new Random();
+
+            return new Location()
+            {
+                Latitude = random.Next(516400146, 630304598).ToString(),
+                Longitude = random.Next(224464416, 341194152).ToString(),
+                TimeStamp = DateTime.Now.ToString(),
+            };
+
         }
     }
 
-    public class Location{
+    public class Location
+    {
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        public DateTime TimeStamp { get; set; }
+        public string TimeStamp { get; set; }
     }
 }

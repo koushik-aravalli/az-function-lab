@@ -2,7 +2,7 @@
 This lab will help us understand how a time trigger invokes an azure function. 
 Checkout the presentation slides for lab01 scenario
 
-#### Using C#
+#### Using C# : 
 
 With installed Azure Function visual studio extension, follow the steps:
     - create new project
@@ -15,7 +15,46 @@ After creation of a function within the FunctionApp Project locally, when more f
 
 Azure Storage Explorer can create temporary local Storage Emulator, and using this, populate the local.settings.json file with the connection string of the local storage account 
 
+##### Dependencies
+- **Adding binding dependencies**
+    With VS or VSCode, binding need to be added to have a successful compilation. [Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register) describes how to and also list of all supported bindings
+
+    For VSCode
+    ```
+    dotnet add package Microsoft.Azure.WebJobs.Extensions.ServiceBus
+    ```
+
+#### Lab01_TimerTrigger
+    - Setup: Create
+        - Login
+          ```
+          az login
+          ```
+        - Create Resource Group
+          ```
+          az group create --name az-function-lab --location northeurope
+          ```
+        - Create ServiceBus Namespace
+          ```
+          az servicebus namespace create --resource-group az-function-lab --name az-function-lab-sb21082019 --location northeurope
+          ```
+        - Create ServiceBus Queue
+          ```
+          az servicebus queue create --resource-group az-function-lab --namespace-name az-function-lab-sb21082019 --name SampleQueue
+          ```
+        - Get ConnectionKey
+          ```
+          az servicebus namespace authorization-rule keys list --resource-group az-function-lab --namespace-name az-function-lab-sb21082019 --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
+          ```
+
+    - Setup: Destroy
+        - Remove ResourceGroup
+          ```
+          az group delete --name az-function-lab
+          ```
+
 #### Resolve issues
+
 **Nuget Package Error: Unable to load the service index for source**
     Find nuget.config at /users/{your-user-account}/AppData/Roaming/Nuget/nuget.config
     Check if the listed package sources are still accessile with the credentials
@@ -26,12 +65,10 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
     ```
     dotnet restore
     ```
-
 **Timer trigger function: Microsoft.WindowsAzure.Storage: No connection could be made because the target machine actively refused it**
     Download and install Storage Emulator
-    Run the Emulator
+    Run the Emulator @ "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator"
     ```
-    cd C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator
     AzureStorageEmulator.exe init
     AzureStorageEmulator.exe start
     ```
