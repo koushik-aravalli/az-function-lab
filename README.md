@@ -11,6 +11,27 @@ This repo contains labs to demonstrate azure Function for AZ-203
   
   - Create Azure Function apps by using Visual Studio
 
+### Versions
+  There are 2 version of Azure Function, 1.x and 2.x. 
+  1.x --> Runs on .NET 4.7 Framework
+  2.x --> Self contained, dotnetcore based
+
+### host.json
+  This file sets global configuration of the functions that recide within the Azure Function App.
+
+  For example, configuration of
+    * application insights on frequency of telemetry data to collect
+    * eventhub on maximum number of events to be recieved by the function
+    * function timeout
+    * logger settings
+    * all supported bindings/triggers
+
+  <i>Note: When running locally, host.json file can be configured to enable only certain functions</i>
+
+  Based on Function app version, host.jsob file behaviour changes. 
+  1.x: [Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json-v1)  
+  2.x: [Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) 
+
 ## What do we need to run the labs
   - [Azure Subscription](https://portal.azure.com)
   - Windows Laptop
@@ -19,7 +40,9 @@ This repo contains labs to demonstrate azure Function for AZ-203
     - Extension Azure functions
     - Azure Account
   - [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator)
+    - Emulator requires [MS SQL](https://download.microsoft.com/download/5/E/9/5E9B18CC-8FD5-467E-B5BF-BADE39C51F73/SQLServer2017-SSEI-Expr.exe)
   - [Azure Storage Explorer](https://go.microsoft.com/fwlink/?LinkId=708343&clcid=0x409)
+  - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)
 
 ## References
   - [Azure functions Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference)
