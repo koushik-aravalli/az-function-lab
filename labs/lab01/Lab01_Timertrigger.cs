@@ -13,4 +13,10 @@ namespace az203.labs.Function
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
         }
     }
+
+    public class Location{
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+        public DateTime TimeStamp { get; set; }
+    }
 }
