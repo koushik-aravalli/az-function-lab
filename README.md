@@ -32,6 +32,11 @@ This repo contains labs to demonstrate azure Function for AZ-203
   1.x: [Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json-v1)  
   2.x: [Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json) 
 
+## Read before
+  - [What is Serverless?](https://martinfowler.com/articles/serverless.html)
+  - Azure Functions depend on the Azure Storage Account to store the context and settings with in built encryption, get basic understanding of [storage account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview)
+  - Azure Functions's triggers and bindings are mostly Azure resources, get basic understanding of ServiceBus, StorageAccount, CosmosDb, NotificationHub, EventHub, KeyVault and ApplicationInsights
+
 ## What do we need to run the labs
   - [Azure Subscription](https://portal.azure.com)
   - Windows Laptop
@@ -46,3 +51,4 @@ This repo contains labs to demonstrate azure Function for AZ-203
 
 ## References
   - [Azure functions Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference)
+  - [Azure functions wiki](https://github.com/Azure/azure-functions-host/wiki/function.json)
