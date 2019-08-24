@@ -47,6 +47,18 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
           az servicebus namespace authorization-rule keys list --resource-group az-function-lab --namespace-name az-function-lab-sb21082019 --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
           ```
 
+    - Start: Start functions in the lab
+          Use following command to start the function, (make sure, the path is at *.csproj file)
+          ```
+          func host start
+          ```
+
+    - Stop: Stop functions in the lab
+          Keyboard shortcut to stop the function
+          ```
+          Ctrl+C
+          ```
+
     - Setup: Destroy
         - Remove ResourceGroup
           ```
@@ -72,5 +84,7 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
     AzureStorageEmulator.exe init
     AzureStorageEmulator.exe start
     ```
+***Microsoft.WindowsAzure.Storage: Calculated MD5 does not match existing property**
+    During local deployment of Functions, the is a dependency on Storage Emulator. Before execution of function app locally, emulator is started thereby a blob is created in local SQLdb. This error occurs when locks are blocking the next execution. Open Storage Explorer, browse to emulator and remove the blob and refresh.
 
 #### Using Javascript/Portal
