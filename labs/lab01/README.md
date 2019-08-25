@@ -2,7 +2,7 @@
 This lab will help us understand how a time trigger invokes an azure function. 
 Checkout the presentation slides for lab01 scenario
 
-#### Using C# : 
+#### Using [C#](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-class-library#functions-class-library-project) : 
 
 With installed Azure Function visual studio extension, follow the steps:
     - create new project
@@ -25,45 +25,63 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
     ```
 
 #### Lab01_TimerTrigger
-    - Setup: Create
-        - Login
-          ```
-          az login
-          ```
-        - Create Resource Group
-          ```
-          az group create --name az-function-lab --location northeurope
-          ```
-        - Create ServiceBus Namespace
-          ```
-          az servicebus namespace create --resource-group az-function-lab --name az-function-lab-sb21082019 --location northeurope
-          ```
-        - Create ServiceBus Queue
-          ```
-          az servicebus queue create --resource-group az-function-lab --namespace-name az-function-lab-sb21082019 --name SampleQueue
-          ```
-        - Get ConnectionKey
-          ```
-          az servicebus namespace authorization-rule keys list --resource-group az-function-lab --namespace-name az-function-lab-sb21082019 --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
-          ```
+  - Setup: Create
+      - Login
+        ```
+        az login
+        ```
+      - Create Resource Group
+        ```
+        az group create --name az-function-lab --location northeurope
+        ```
+      - Create ServiceBus Namespace
+        ```
+        az servicebus namespace create --resource-group az-function-lab --name az-function-lab-sb21082019 --location northeurope
+        ```
+      - Create ServiceBus Queue
+        ```
+        az servicebus queue create --resource-group az-function-lab --namespace-name az-function-lab-sb21082019 --name SampleQueue
+        ```
+      - Get ConnectionKey
+        ```
+        az servicebus namespace authorization-rule keys list --resource-group az-function-lab --namespace-name az-function-lab-sb21082019 --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
+        ```
 
-    - Start: Start functions in the lab
-          Use following command to start the function, (make sure, the path is at *.csproj file)
-          ```
-          func host start
-          ```
+  - Start: Start functions in the lab
+    Use following command to start the function, (make sure, the path is at *.csproj file)
+    ```
+    func host start
+    ```
 
-    - Stop: Stop functions in the lab
-          Keyboard shortcut to stop the function
-          ```
-          Ctrl+C
-          ```
+  - Stop: Stop functions in the lab
+    Keyboard shortcut to stop the function
+    ```
+    Ctrl+C
+    ```
 
-    - Setup: Destroy
-        - Remove ResourceGroup
-          ```
-          az group delete --name az-function-lab
-          ```
+  - Deploy to Azure:
+    - [FunctionApp - CLI](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest)
+
+    - [With CLI](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#project-file-deployment)
+      * Create Storage Account
+        (FunctionApp's cannot be created in Standard_RAGRS)
+      ```
+      az storage account create -n azfunc20325082019 -g az-function-lab -l northeurope --sku Standard_LRS
+      ```
+      * Create FunctionApp in ResourceGroup
+      ```
+      az functionapp create --name azfunc203-20190825 --resource-group az-function-lab --consumption-plan-location northeurope --storage-account azfunc20325082019
+      ```
+      * Deploy lab01 within FunctionApp
+      ```
+      func azure functionapp publish azfunc203-20190825
+      ```
+
+  - Setup: Destroy
+    - Remove ResourceGroup
+      ```
+      az group delete --name az-function-lab
+      ```
 
 #### Resolve issues
 
@@ -84,7 +102,14 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
     AzureStorageEmulator.exe init
     AzureStorageEmulator.exe start
     ```
-***Microsoft.WindowsAzure.Storage: Calculated MD5 does not match existing property**
+
+**Microsoft.WindowsAzure.Storage: Calculated MD5 does not match existing property**
     During local deployment of Functions, the is a dependency on Storage Emulator. Before execution of function app locally, emulator is started thereby a blob is created in local SQLdb. This error occurs when locks are blocking the next execution. Open Storage Explorer, browse to emulator and remove the blob and refresh.
+
+**Signout of Azure VSCode**
+    In case there is an another subscripton is being looged in, switch accounts in VSCode by signing out
+    ```
+    ctrl+shift+p
+    ```
 
 #### Using Javascript/Portal
