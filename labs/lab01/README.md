@@ -83,6 +83,15 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
   
 
   - Managed Service Identity on Keyvault
+    In order to communicate with the Keyvault, Azure Function should be enabled with system Identity. Follow below steps to enable identity 
+    * Browse to the Azure function, on Platform features tab, select Identity
+    * Set status to On and save the changes (notice that a guid is generated as ObjectID)
+    * Browse back to the Keyvault in the ResourceGroup, Select Access policies
+    * Add Access Policy, from Secret permissions, select Get/List/Set/Delete 
+    * Select Service Principal, search for Azure Function, select and add, finally save the changes
+
+  - Access Secrets
+
 
   - Setup: Destroy
     - Remove ResourceGroup
