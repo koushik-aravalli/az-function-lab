@@ -25,7 +25,7 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
     ```
 
 #### Lab01_TimerTrigger
-  - Setup: Create
+  - Setup: Create RG, StorageAccount, SB
       - Login
         ```
         az login
@@ -46,6 +46,10 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
         ```
         az servicebus namespace authorization-rule keys list --resource-group az-function-lab --namespace-name az-function-lab-sb21082019 --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
         ```
+      - Deploy KeyVault
+        ```
+        az keyvault create -n azfunc203-20190825 -g az-function-lab
+        ```
 
   - Start: Start functions in the lab
     Use following command to start the function, (make sure, the path is at *.csproj file)
@@ -59,7 +63,7 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
     Ctrl+C
     ```
 
-  - Deploy to Azure:
+  - Deploy FuntionApp to Azure RG:
     - [FunctionApp - CLI](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest)
 
     - [With CLI](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#project-file-deployment)
@@ -76,6 +80,9 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
       ```
       func azure functionapp publish azfunc203-20190825
       ```
+  
+
+  - Managed Service Identity on Keyvault
 
   - Setup: Destroy
     - Remove ResourceGroup
