@@ -91,7 +91,13 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
     * Select Service Principal, search for Azure Function, select and add, finally save the changes
 
   - Access Secrets
-
+    - Add Package to project to support Keyvault access from application
+      ```
+      dotnet add package Microsoft.Azure.Services.AppAuthentication
+      dotnet add package Microsoft.IdentityModel.Clients.ActiveDirectory
+      dotnet add package Microsoft.Extensions.Configuration.AzureKeyVault
+      ```
+    - Add values to the local.settings.json
 
   - Setup: Destroy
     - Remove ResourceGroup
