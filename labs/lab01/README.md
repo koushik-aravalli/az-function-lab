@@ -99,6 +99,13 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
       ```
     - Add values to the local.settings.json
 
+  - Binding : Twilio 
+    - Before using Twilio binding, signup for [Twilio](https://www.twilio.com) to send/recieve sms/whatsapp/calls. Generate Account SID and Authentication Token
+    - Add Package to project to support Keyvault access from application
+      ```
+      dotnet add package Microsoft.Azure.WebJobs.Extensions.Twilio
+      ```
+
   - Setup: Destroy
     - Remove ResourceGroup
       ```

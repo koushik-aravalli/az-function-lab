@@ -5,13 +5,16 @@ using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace az203.labs.Function
 {
     public static class Lab01_ServicebusQueuetrigger
     {
         [FunctionName("Lab01_ServicebusQueuetrigger")]
-        public static async Task RunAsync(
+        [return: TwilioSms(AccountSidSetting = "TwilioAccountSid", AuthTokenSetting = "TwilioAuthToken", From = "+31615xxxxxx" )]
+        public static async Task<CreateMessageOptions> RunAsync(
             [ServiceBusTrigger("samplequeue", Connection = "AzureServiceBusConnectionString")] string myqueue, 
             ILogger log)
         {
@@ -24,6 +27,13 @@ namespace az203.labs.Function
             //var secretValue = Environment.GetEnvironmentVariable("AzureKv");
 
             log.LogInformation(secretValue);
+
+            var message = new CreateMessageOptions(new PhoneNumber(Environment.GetEnvironmentVariable("OutgoingMobileNumber")))
+            {
+                Body = $"{myqueue}"
+            };
+
+            return message;
         }
     }
 
