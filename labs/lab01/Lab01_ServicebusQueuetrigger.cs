@@ -13,7 +13,7 @@ namespace az203.labs.Function
     public static class Lab01_ServicebusQueuetrigger
     {
         [FunctionName("Lab01_ServicebusQueuetrigger")]
-        [return: TwilioSms(AccountSidSetting = "TwilioAccountSid", AuthTokenSetting = "TwilioAuthToken", From = "+31615xxxxxx" )]
+        [return: TwilioSms(AccountSidSetting = "TwilioAccountSid", AuthTokenSetting = "TwilioAuthToken", From = "TwilioFromPhoneNumber" )]
         public static async Task<CreateMessageOptions> RunAsync(
             [ServiceBusTrigger("samplequeue", Connection = "AzureServiceBusConnectionString")] string myqueue, 
             ILogger log)

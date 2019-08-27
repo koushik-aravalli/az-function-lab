@@ -50,6 +50,10 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
         ```
         az keyvault create -n azfunc203-20190825 -g az-function-lab
         ```
+      - Save Servicebus connection string to KV secret
+        ```
+        az keyvault secret set --vault-name azfunc203-20190825 --name storageaccount-key --value "Endpoint=sb://xxxxxxxxxx.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xxxxxxxxxxxxxx"
+        ```
 
   - Start: Start functions in the lab
     Use following command to start the function, (make sure, the path is at *.csproj file)
