@@ -16,7 +16,9 @@ This repo contains labs to demonstrate azure Function for AZ-203
   1.x --> Runs on .NET 4.7 Framework
   2.x --> Self contained, dotnetcore based
 
-### host.json
+Basic difference between both the versions is the creation/generation of functionapp.json file. But both the versions will have functionapp.json and host.json file. Based on version in the host.json file, Azure backend services identifies the runtime version for execution.
+
+#### host.json
   This file sets global configuration of the functions that recide within the Azure Function App.
 
   For example, configuration of

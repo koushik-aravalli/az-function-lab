@@ -45,9 +45,17 @@ After creation of a function within the FunctionApp Project locally, when more f
 ***Note : Azure Storage Explorer can create temporary local Storage Emulator, and using this, populate the local.settings.json file with the connection string of the local storage account***
 
 #### Lab01_TimerTrigger
-Actions are same as above except at the last step of Select a trigger, instead select TimeTrigger
+Actions are same as above except at the last step of Select a trigger, instead select TimeTrigger. 
+
+After generation of the code, copy the code from [file](Lab01_Timertrigger.cs)
 
 #### Lab01_ServicebusTrigger
+Actions are same as above except at the last step of Select a trigger, instead select ServicebusQueueTrigger. 
+
+After generation of the code, copy the code from [file](Lab01_ServicebusQueuetrigger.cs)
+
+
+#### Complete setup with CLI and VSCode
 
   - Setup: Create RG, StorageAccount, SB
       - Login
