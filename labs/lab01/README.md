@@ -4,6 +4,28 @@ Checkout the presentation slides for lab01 scenario
 
 #### Using [C#](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-class-library#functions-class-library-project) : 
 
+Lab01 is developed in C# (*.cs not *.csx), to help us understand how Azure functions are developed and developed
+
+#### How to setup :
+As mentioned earlier [readme/What do we need to run the labs](../../README.md), we will need Azure subscription, VSCode along with function app extension, dontnet core, functionapp, storage emulator along with explorer.
+
+#### Quickly create an Azure FunctionApp
+1. Open VS code, click on the Azure [logo]:https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/187px-Microsoft_Azure_Logo.svg.png Icon on the left
+1. Login to Azure Subscription
+1. Right click on the Subscription, Select Create Function App (Advanced)
+    2. Enter name of the FunctionApp (globally unique)
+    2. Select Windows based OS
+    2. Select Consumption plan
+    2. Select .NET
+    2. Select Create a new Resource Group, Enter name of the ResoruceGroup
+    2. Select Create a new Storage Account, Enter name of the Storage Account
+    2. Skip Application Insights
+
+![](../gifs/CreateAzurefunctionDirecltyFromVSCode.gif)
+
+
+#### Create VSCode development workspace for Azure FunctionApp
+
 With installed Azure Function visual studio extension, follow the steps:
     - create new project
     - select browse to point at folder locaton where Function Project need to be created. Project is collection of functions
