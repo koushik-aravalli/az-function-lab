@@ -10,43 +10,45 @@ Lab01 is developed in C# (*.cs not *.csx), to help us understand how Azure funct
 As mentioned earlier [readme/What do we need to run the labs](../../README.md), we will need Azure subscription, VSCode along with function app extension, dontnet core, functionapp, storage emulator along with explorer.
 
 #### Quickly create an Azure FunctionApp
-1. Open VS code, click on the Azure [logo]:https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/187px-Microsoft_Azure_Logo.svg.png Icon on the left
+1. Open VS Code, click on the Azure ![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/187px-Microsoft_Azure_Logo.svg.png) Icon on the left
 1. Login to Azure Subscription
 1. Right click on the Subscription, Select Create Function App (Advanced)
-    2. Enter name of the FunctionApp (globally unique)
-    2. Select Windows based OS
-    2. Select Consumption plan
-    2. Select .NET
-    2. Select Create a new Resource Group, Enter name of the ResoruceGroup
-    2. Select Create a new Storage Account, Enter name of the Storage Account
-    2. Skip Application Insights
+    - Enter name of the FunctionApp (globally unique)
+    - Select Windows based OS
+    - Select Consumption plan
+    - Select .NET
+    - Select Create a new Resource Group, Enter name of the ResoruceGroup
+    - Select Create a new Storage Account, Enter name of the Storage Account
+    - Skip Application Insights
 
 ![](../gifs/CreateAzurefunctionDirecltyFromVSCode.gif)
 
 
 #### Create VSCode development workspace for Azure FunctionApp
 
+#### Lab01_HttpTrigger
+1. Open VS Code, click on the Azure [logo]:https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Microsoft_Azure_Logo.svg/187px-Microsoft_Azure_Logo.svg.png Icon on the left
+1. 
 With installed Azure Function visual studio extension, follow the steps:
-    - create new project
-    - select browse to point at folder locaton where Function Project need to be created. Project is collection of functions
+    - Select Create new project
+    - Browse to the folder locaton where Function Project need to be created. Project is collection of functions
     - Proivde name of the function that will live within the Function Project
     - Specify namespace, for logical segregation
     - Select a trigger - HttpTrigger in this case 
 
-After creation of a function within the FunctionApp Project locally, when more functions need to be added, use 'Create Function' within the same folder where the above created function exists. Follow steps as above to generate new function. 
+![](../gifs/CreateAzureFunctionAppProject-Locally.gif)
 
-Azure Storage Explorer can create temporary local Storage Emulator, and using this, populate the local.settings.json file with the connection string of the local storage account 
 
-##### Dependencies
-- **Adding binding dependencies**
-    With VS or VSCode, binding need to be added to have a successful compilation. [Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register) describes how to and also list of all supported bindings
+After creation of a function within the FunctionApp Project locally, when more functions need to be added, use 'Create Function' within the same folder where the above created function exists. Follow steps as above to generate new function. The folder structure of a typical AzureFunctionApp project is as follows
+![](../gifs/AzureFunctionFolderStructure.jpeg)
 
-    For VSCode
-    ```
-    dotnet add package Microsoft.Azure.WebJobs.Extensions.ServiceBus
-    ```
+***Note : Azure Storage Explorer can create temporary local Storage Emulator, and using this, populate the local.settings.json file with the connection string of the local storage account***
 
 #### Lab01_TimerTrigger
+Actions are same as above except at the last step of Select a trigger, instead select TimeTrigger
+
+#### Lab01_ServicebusTrigger
+
   - Setup: Create RG, StorageAccount, SB
       - Login
         ```
@@ -137,6 +139,15 @@ Azure Storage Explorer can create temporary local Storage Emulator, and using th
       ```
       az group delete --name az-function-lab
       ```
+
+##### Dependencies
+- **Adding binding dependencies**
+    With VS or VSCode, binding need to be added to have a successful compilation. [Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register) describes how to and also list of all supported bindings
+
+    For example, within VSCode terminal (shortcut: Ctrl+Shift+`), add a new dependency to the project using following
+    ```
+    dotnet add package Microsoft.Azure.WebJobs.Extensions.ServiceBus
+    ```
 
 #### Resolve issues
 
